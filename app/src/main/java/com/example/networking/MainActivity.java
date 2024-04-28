@@ -23,12 +23,6 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
             new Mountain("Denali")
     ));
 
-    RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, items, new RecyclerViewAdapter.OnClickListener() {
-        @Override
-        public void onClick(Mountain item) {
-            Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
-        }
-    });
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +34,13 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
         new JsonFile(this, this).execute(JSON_FILE);
     }
+
+    RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, items, new RecyclerViewAdapter.OnClickListener() {
+        @Override
+        public void onClick(Mountain item) {
+            Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+        }
+    });
 
     @Override
     public void onPostExecute(String json) {
