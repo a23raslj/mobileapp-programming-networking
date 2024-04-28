@@ -8,7 +8,6 @@ public class Mountain {
 
     private String title;
 
-
     public Mountain(String title) {
         this.title = title;
     }
