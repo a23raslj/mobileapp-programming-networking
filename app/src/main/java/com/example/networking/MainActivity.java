@@ -35,10 +35,9 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
                 Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
             }
         });
+
         view.setLayoutManager(new LinearLayoutManager(this));
         view.setAdapter(adapter);
-
-
 
         new JsonFile(this, this).execute(JSON_FILE);
     }
