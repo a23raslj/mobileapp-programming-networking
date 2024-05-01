@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
             new RecyclerViewItem("Mont Blanc"),
             new RecyclerViewItem("Denali")
     ));
+
+    ArrayList<Mountain> mountain = new ArrayList<>();
     Gson gson = new Gson();
 
 
