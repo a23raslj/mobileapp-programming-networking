@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         }.getType();
         List<Mountain> mountains = gson.fromJson(json, type);
         if (mountains != null) {
+            items.clear(); //Clears old RecyclerViewItems
             for (Mountain mountain : mountains) {
                 items.add(new RecyclerViewItem(mountain.getName()));
             }
