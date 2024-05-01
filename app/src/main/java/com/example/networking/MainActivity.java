@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
     ArrayList<Mountain> mountain = new ArrayList<>();
     Gson gson = new Gson();
-
+    String json = gson.toJson(mountain);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +59,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     public void onPostExecute(String json) {
 
         Log.d("MainActivity", json);
-        Type listType = new TypeToken<List<Mountain>>() {}.getType();
-        List<Mountain> mountains = gson.fromJson(json, listType);
+        Type type = new TypeToken<List<Mountain>>() {}.getType();
+        List<Mountain> Mountain = gson.fromJson(json, type);
 
         adapter.notifyDataSetChanged();
     }
