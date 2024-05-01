@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         setContentView(R.layout.activity_main);
 
         RecyclerView view = findViewById(R.id.recycler_view);
-            adapter = new RecyclerViewAdapter(this, items, new RecyclerViewAdapter.OnClickListener() {
+        adapter = new RecyclerViewAdapter(this, items, new RecyclerViewAdapter.OnClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
                 Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
@@ -54,15 +54,17 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     }
 
 
-
     @Override
     public void onPostExecute(String json) {
-
         Log.d("MainActivity", json);
-        Type type = new TypeToken<List<Mountain>>() {}.getType();
-        List<Mountain> Mountain = gson.fromJson(json, type);
-
-        adapter.notifyDataSetChanged();
+        Type type = new TypeToken<List<Mountain>>() {
+        }.getType();
+        List<Mountain> mountains = gson.fromJson(json, type);
+        if (mountains != null) {
+            for (Mountain mountain : mountains) {
+                items.add(new RecyclerViewItem(mountain.getName()));
+            }
+            adapter.notifyDataSetChanged();
+        }
     }
-
 }
