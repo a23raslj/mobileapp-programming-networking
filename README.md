@@ -1,42 +1,33 @@
 
 # Rapport
 
-**Skriv din rapport här!**
+För att sammanfatta det som gjorts så har en recyclerview widget lagts till, till denna har klasser 
+skapats för att hantera data samt en adapter för att recyclerview:en ska fungera. Därefter tas ny
+data emot via en URL och importeras in recyclerview. 
 
-_Du kan ta bort all text som finns sedan tidigare_.
-
-## Följande grundsyn gäller dugga-svar:
-
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
-
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
+I kod exemplet nedanför så har vi onPostExecute vilket är en metod för att köra en viss typ av kod
+när en annan typ av "tjänst" är klar, i denna finner vi först Log.d vilket finns där för att hjälpa
+till med debugging. Därefter tas informationen som hämtas från tidigare URL och görs om till en 
+lista med objekt (mountains). Sedan finns bara ett villkor som kollar att listan inte är tom följ av
+kod som tömmer alla tidigare saker i recyclerview. Sedan har vi en loop som skapar nya objekt
+av alla berg och visar upp namnet. Till sist har vi kod för att uppdatera adaptern.
 
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
-    }
-}
+    @Override
+    public void onPostExecute(String json) {
+        Log.d("MainActivity", json);
+        Type type = new TypeToken<List<Mountain>>() {
+        }.getType();
+        List<Mountain> mountains = gson.fromJson(json, type);
+        if (mountains != null) {
+            items.clear(); //Clears old RecyclerViewItems
+            for (Mountain mountain : mountains) {
+                items.add(new RecyclerViewItem(mountain.getName()));
+            }
+            adapter.notifyDataSetChanged();
+        }
 ```
 
-Bilder läggs i samma mapp som markdown-filen.
 
 ![](android.png)
 
-Läs gärna:
-
-- Boulos, M.N.K., Warren, J., Gong, J. & Yue, P. (2010) Web GIS in practice VIII: HTML5 and the canvas element for interactive online mapping. International journal of health geographics 9, 14. Shin, Y. &
-- Wunsche, B.C. (2013) A smartphone-based golf simulation exercise game for supporting arthritis patients. 2013 28th International Conference of Image and Vision Computing New Zealand (IVCNZ), IEEE, pp. 459–464.
-- Wohlin, C., Runeson, P., Höst, M., Ohlsson, M.C., Regnell, B., Wesslén, A. (2012) Experimentation in Software Engineering, Berlin, Heidelberg: Springer Berlin Heidelberg.
