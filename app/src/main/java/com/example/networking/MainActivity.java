@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -22,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
             new RecyclerViewItem("Mont Blanc"),
             new RecyclerViewItem("Denali")
     ));
+
+    Gson gson = new Gson();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
