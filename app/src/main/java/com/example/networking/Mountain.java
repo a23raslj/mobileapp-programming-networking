@@ -10,10 +10,6 @@ public class Mountain {
     private int size;
     private int cost;
 
-    public void setAuxdata(AuxData auxdata) {
-        this.auxdata = auxdata;
-    }
-
     private AuxData auxdata;
 
     public String getID() {
