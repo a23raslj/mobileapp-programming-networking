@@ -9,6 +9,11 @@ public class Mountain {
     private String category;
     private int size;
     private int cost;
+
+    public void setAuxdata(AuxData auxdata) {
+        this.auxdata = auxdata;
+    }
+
     private AuxData auxdata;
 
     public String getID() {
@@ -73,6 +78,10 @@ public class Mountain {
 
     public void setCost(int cost) {
         this.cost = cost;
+    }
+
+    public AuxData getAuxdata() {
+        return auxdata;
     }
 
     public static class AuxData {
