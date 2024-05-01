@@ -1,14 +1,11 @@
 package com.example.networking;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 @SuppressWarnings("WeakerAccess")
-public class Mountain {
+public class RecyclerViewItem {
 
     private String title;
 
-    public Mountain(String title) {
+    public RecyclerViewItem(String title) {
         this.title = title;
     }
 
